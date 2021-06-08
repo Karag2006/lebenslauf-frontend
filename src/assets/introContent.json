@@ -2,12 +2,19 @@
     "title": "Martin Richter",
     "items": [
         {
+            "id": 0,
             "title": "Adresse",
             "content": "Am Hof 28. 53639 Königswnter"
         },
         {
+            "id": 1,
             "title": "Telefon",
             "content": "02223 90 37 73"
+        },
+        {
+            "id": 2,
+            "title": "Mobil",
+            "content": "0176 56 123 985"
         }
     ],
     "image": {
