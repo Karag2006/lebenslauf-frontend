@@ -1,0 +1,162 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: rgb(255, 248, 238);
+    --text-color: black;
+    --text-color-accent: rgb(214, 69, 2);
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+}
+
+body {
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--text-color-accent);
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 1rem;
+}
+
+h1 {
+    font-size: 1.7rem;
+}
+
+h2 {
+    font-size: 1.1rem;
+}
+
+.container {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    width: 100%;
+    max-width: 1100px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0 2rem;
+    overflow-x: hidden;
+}
+
+.accent {
+    color: var(--text-color-accent);
+}
+
+.col {
+    width: 100%;
+}
+
+.title,
+.subtitle,
+h4 {
+    position: relative;
+}
+
+.title::after,
+.subtitle::after,
+h4::after {
+    content: "";
+    /* width: width of the column + 2rem padding on the container */
+    width: calc(100% + 2rem);
+    /* height in px instead of rem / em to avoid subpixel sizes */
+    height: 2px;
+    background-color: var(--text-color-accent);
+    position: absolute;
+    bottom: 0;
+    left: -2rem;
+}
+
+.intro--img {
+    margin-top: 1.34em;
+}
+
+.text--item {
+    margin-bottom: 1.5em;
+}
+
+.text--item--title,
+.text--item--content {
+    margin: 0;
+}
+
+.text--item--title {
+    font-weight: 900;
+    margin-bottom: 0.2em;
+}
+
+.ability--item {
+    display: flex;
+    justify-items: space-between;
+    align-items: center;
+}
+
+.ability--name {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+    font-weight: 900;
+}
+
+.ability--display {
+    display: inline-block;
+    width: 100%;
+}
+
+@media screen and (min-width: 550px) {
+    :root {
+        font-size: 1.3rem;
+    }
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-size: 1.3rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    .title::after,
+    .subtitle::after,
+    h4::after {
+        /* height in px instead of rem / em to avoid subpixel sizes */
+        height: 3px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .container {
+        width: 80%;
+    }
+    .row {
+        display: flex;
+        justify-content: space-between;
+    }
+    .col + .col {
+        margin-left: 1em;
+    }
+
+    .col + .col .studies--title::after,
+    .col + .col .school--title::after {
+        left: 0;
+    }
+}
