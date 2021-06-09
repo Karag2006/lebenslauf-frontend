@@ -114,6 +114,7 @@ h4::after {
 .ability--display {
     display: inline-block;
     width: 100%;
+    color: var(--text-color-accent);
 }
 
 @media screen and (min-width: 550px) {

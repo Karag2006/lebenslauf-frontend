@@ -1,0 +1,26 @@
+{
+    "skills": {
+        "skillTitle": "Kenntnisse & Fähigkeiten",
+        "skillCategories": [
+            {
+                "id": 0,
+                "col": 1,
+                "title": "Sprachen",
+                "items": [
+                    {"id": 0, "name": "Deutsch", "level":10 },
+                    {"id": 1, "name": "Englisch", "level":8}
+                ]
+                
+            },
+            {
+                "id":1,
+                "col": 2,
+                "title": "Programmierung",
+                "items": [
+                    {"id": 0, "name": "Java", "level": 7},
+                    {"id": 1, "name": "C / C++", "level": 7}
+                ]
+            }
+        ]
+    }
+}
