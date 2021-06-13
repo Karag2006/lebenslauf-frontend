@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <intro :intro="intro"></intro>
-        <main-section :main="main"></main-section>
+        <intro :intro="lebenslauf.intro"></intro>
+        <main-section :main="lebenslauf.main"></main-section>
     </div>
 </template>
 
@@ -9,9 +9,8 @@
 import Intro from "@/components/Intro/Intro.vue";
 import MainSection from '@/components/main/Main.vue'
 
-
-import introContent from '../assets/introContent.json'
-import mainContent from '../assets/mainContent.json'
+// import introContent from '../assets/introContent.json'
+// import mainContent from '../assets/mainContent.json'
 
 
 export default {
@@ -22,14 +21,21 @@ export default {
     },
     data() {
         return {
-            intro: introContent,
-            main: mainContent
+            lebenslauf: {},
         };
     },
     computed: {
         
     },
     mounted() {
+        window.axios.get('http://localhost:3000/lebenslauf')
+            .then(response => {
+                this.lebenslauf = response.data;
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            });
       
     },
 };

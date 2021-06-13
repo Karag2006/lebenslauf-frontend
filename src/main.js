@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+const axios = require('axios')
+window.axios = axios
+
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@/assets/style.css'
 
