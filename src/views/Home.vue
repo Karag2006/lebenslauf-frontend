@@ -28,7 +28,7 @@ export default {
         
     },
     mounted() {
-        window.axios.get('http://localhost:3000/lebenslauf')
+        window.axios.get('http://martin-richter.me:3000/lebenslauf')
             .then(response => {
                 this.lebenslauf = response.data;
                 console.log(response)
