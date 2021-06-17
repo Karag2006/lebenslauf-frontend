@@ -85,12 +85,16 @@ h4::after {
     left: -2rem;
 }
 
+.intro{
+  margin-bottom: 5em;
+}
+
 .intro--img {
     margin-top: 1.34em;
 }
 
 .text--item {
-    margin-bottom: 1.5em;
+    margin-bottom: 1em;
 }
 
 .text--item--title,
@@ -103,10 +107,24 @@ h4::after {
     margin-bottom: 0.2em;
 }
 
+.abilities {
+    margin-bottom: 5em;
+}
+
 .ability--item {
     display: flex;
     justify-items: space-between;
     align-items: center;
+  margin-bottom: .3em;
+}
+
+.ability--item:hover {
+    transform: scale(1.03);
+    transition: transform .5s ease-in-out;
+}
+
+.ability--item {
+    transition: transform .5s ease-in-out;
 }
 
 .ability--name {
@@ -117,7 +135,7 @@ h4::after {
 }
 
 .ability--display {
-    display: inline-block;
+    display: flex;
     width: 100%;
     color: var(--text-color-accent);
 }
@@ -134,11 +152,15 @@ h4::after {
     font-weight: bold;
 }
 
+.career ul{
+  margin:0;
+}
+
 
 
 @media screen and (min-width: 550px) {
     :root {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
     h1,
     h2,
