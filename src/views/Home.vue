@@ -8,6 +8,7 @@
 <script>
 import Intro from "@/components/Intro/Intro.vue";
 import MainSection from '@/components/main/Main.vue'
+import axios from 'axios'
 
 // import introContent from '../assets/introContent.json'
 // import mainContent from '../assets/mainContent.json'
@@ -28,10 +29,10 @@ export default {
         
     },
     mounted() {
-        window.axios.get('http://martin-richter.me:3000/lebenslauf')
+        axios.get('http://localhost:3000/api')
             .then(response => {
                 this.lebenslauf = response.data;
-                console.log(response)
+                //console.log(response)
             })
             .catch(error => {
                 console.log(error)
