@@ -28,8 +28,11 @@ export default {
     computed: {
         
     },
-    mounted() {
-        axios.get('http://localhost:3000/api')
+    beforeMount() {
+        
+    },   
+    beforeCreate() {
+        axios.get(process.env.VUE_APP_APIURL + 'api')
             .then(response => {
                 this.lebenslauf = response.data;
                 //console.log(response)
@@ -37,7 +40,7 @@ export default {
             .catch(error => {
                 console.log(error)
             });
-      
     },
+    
 };
 </script>
