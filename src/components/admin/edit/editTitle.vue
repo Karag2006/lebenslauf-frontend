@@ -2,7 +2,7 @@
     <form action="">
         <div class="editRow">
             <input-field
-                v-model="title"
+                v-model="internalTitle"
                 :name="'title'"
                 :Label="'title'"
                 :type="'text'"
@@ -24,6 +24,12 @@ export default {
     },
     props: {
         title: String,
+        location: String
+    },
+    data() {
+        return {
+            internalTitle: this.title
+        }
     },
     methods: {
         

@@ -1,6 +1,6 @@
 <template>
     <div class="intro row">
-        <text-col :title="intro.title" :items="intro.items" :loggedIn="loggedIn"></text-col>
+        <text-col :title="intro.title" :items="intro.items" :loggedIn="loggedIn" :location="location"></text-col>
         <image-col :image="intro.image" :loggedIn="loggedIn"></image-col>
     </div>
 </template>
@@ -16,7 +16,8 @@ export default {
     },
     props:{
         intro: Object,
-        loggedIn: Boolean
+        loggedIn: Boolean,
+        location: String
     }
 }
 </script>

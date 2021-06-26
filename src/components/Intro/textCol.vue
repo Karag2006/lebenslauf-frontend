@@ -2,7 +2,7 @@
     <div class="col">
         <h1 v-if="!loggedIn" class="title">{{title}}</h1>
         <h1 v-else-if="!editmode" class="title clickable" @click="editTitle">{{title}}</h1>
-        <edit-title v-else :title="title" v-on:cancel="cancel"></edit-title>
+        <edit-title v-else :title="title" v-on:cancel="cancel" :location="location + '.title'"></edit-title>
         <intro-items :items="items"></intro-items>
     </div>
 </template>
@@ -24,7 +24,8 @@ export default {
     props:{
         title: String,
         items: Array,
-        loggedIn: Boolean
+        loggedIn: Boolean,
+        location: String
     },
     methods: {
         editTitle(){

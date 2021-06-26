@@ -1,6 +1,10 @@
 <template>
     <div class="container">
-        <intro :intro="lebenslauf.intro" :loggedIn="loggedIn"></intro>
+        <intro
+            :intro="lebenslauf.intro"
+            :loggedIn="loggedIn"
+            :location="location + '.intro'"
+        ></intro>
         <main-section
             :main="lebenslauf.main"
             :loggedIn="loggedIn"
@@ -28,6 +32,7 @@ export default {
     data() {
         return {
             lebenslauf: {},
+            location: "lebenslauf",
         };
     },
     computed: {
@@ -42,20 +47,32 @@ export default {
     },
     methods: {
         logOut() {
-            this.$store.dispatch('auth/logout');
-            this.$router.push('/admin/login');
+            this.$store.dispatch("auth/logout");
+            //this.$router.push('/admin/login');
         },
     },
     beforeCreate() {
         AdminService.getAdminView()
             .then((response) => {
                 this.lebenslauf = response.data;
-                //console.log(response)
+
+                let string = "lebenslauf.main.skills.skillCategories.0.items.0.level";
+                let items = string.split(".");
+                let len = items.length;
+                let position = this;
+                for (let i = 0; i < len - 1; i++) {
+                    let elem = items[i];
+                    if (!position[elem]) position[elem] = {};
+                    position = position[elem];
+                }
+                position[items[len - 1]] = "2";
+                console.log(position);
+                //this.lebenslauf[items[0]][items[1]][items[2]][items[3]] = "Test"
+                //console.log(this.lebenslauf)
             })
             .catch((error) => {
                 console.log(error);
             });
     },
-    
-}
+};
 </script>
