@@ -1,24 +1,38 @@
 <template>
-    <div>
-        <input-field
-            v-model="title"
-            :name="'title'"
-            :Label="'title'"
-            :type="'text'"    
-        ></input-field>
-    </div>
+    <form action="">
+        <div class="editRow">
+            <input-field
+                v-model="title"
+                :name="'title'"
+                :Label="'title'"
+                :type="'text'"
+            ></input-field>
+            <function-button :type="'save'" @submit.prevent="save"/>
+            <function-button :type="'cancel'" @click.native="$emit('cancel')" />
+        </div>
+    </form>
 </template>
 
 <script>
-import inputField from '../inputs/inputField.vue'
+import inputField from "../inputs/inputField.vue";
+import functionButton from "../inputs/functionButtons.vue";
 
 export default {
     components: {
-        inputField
+        inputField,
+        functionButton,
     },
     props: {
-        title: String
+        title: String,
     },
-    
-}
+    methods: {
+        
+    },
+};
 </script>
+
+<style>
+.editRow {
+    display: flex;
+}
+</style>

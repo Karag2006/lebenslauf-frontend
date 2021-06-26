@@ -1,7 +1,13 @@
 <template>
     <div class="container">
         <intro :intro="lebenslauf.intro" :loggedIn="loggedIn"></intro>
-        <main-section :main="lebenslauf.main" :loggedIn="loggedIn"></main-section>
+        <main-section
+            :main="lebenslauf.main"
+            :loggedIn="loggedIn"
+        ></main-section>
+        <a v-if="loggedIn" class="btn btn-logout" @click="logOut">
+            Logout
+        </a>
     </div>
 </template>
 
@@ -30,9 +36,15 @@ export default {
         },
         loggedIn() {
             if (this.currentUser) {
-                return true
-            } else return false
-        }
+                return true;
+            } else return false;
+        },
+    },
+    methods: {
+        logOut() {
+            this.$store.dispatch('auth/logout');
+            this.$router.push('/admin/login');
+        },
     },
     beforeCreate() {
         AdminService.getAdminView()
@@ -44,5 +56,6 @@ export default {
                 console.log(error);
             });
     },
-};
+    
+}
 </script>

@@ -24,7 +24,6 @@ export default {
     padding: 0.5em 0;
 }
 .form-group input{
-    display: inline-block;
     width: 100%;
     font-size: 1.2rem;
 }
