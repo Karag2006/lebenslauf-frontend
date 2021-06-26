@@ -28,7 +28,7 @@
 
 <script>
 import User from '../../../models/user'
-import inputField from "../inputs/inputField.vue";
+import inputField from "../inputs/inputFieldWLabel.vue";
 export default {
     components: { inputField },
     data() {
@@ -60,7 +60,7 @@ export default {
                 if (this.user.username && this.user.password) {
                     this.$store.dispatch('auth/login', this.user)
                         .then(() => {
-                            this.$router.push('/admin/lebenslauf')
+                            this.$router.push('/')
                         },
                         error => {
                             this.loading = false

@@ -1,5 +1,6 @@
 <template>
     <div class="form-group">
+        <label :for="name">{{Label}} :</label>
         <input
             v-bind:value="value"
             :type="type"
@@ -21,11 +22,17 @@ export default {
 
 <style scoped>
 .form-group{
+    display: flex;
+    align-items: center;
+    align-content: space-between;
     padding: 0.5em 0;
 }
+.form-group label{
+    text-align: left;
+    padding-right: 1em;
+}
+.form-group label,
 .form-group input{
-    display: inline-block;
-    width: 100%;
-    font-size: 1.2rem;
+    width: 30%
 }
 </style>
