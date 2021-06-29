@@ -2,7 +2,7 @@
     <form @submit.prevent="save" ref="form">
         <div class="editRow">
             <input-field
-                v-model="internalTitle"
+                v-model="internalValue"
                 :name="'title'"
                 :Label="'title'"
                 :type="'text'"
@@ -24,12 +24,12 @@ export default {
         functionButton,
     },
     props: {
-        title: String,
+        value: String,
         location: String
     },
     data() {
         return {
-            internalTitle: this.title
+            internalValue: this.value
         }
     },
     methods: {
@@ -38,24 +38,10 @@ export default {
             // use vuex to make the change in the API
             let obj = {
                 location: this.location,
-                value: this.internalTitle
+                value: this.internalValue
             }
             this.$store.dispatch("cv/updateLebenslauf", obj)
             this.$emit("changed")
-            // use vuex to make the change locally
-            //this.$store.commit("cv/UPDATE_LEBENSLAUF", {location: this.location, value: this.internalTitle})
-            // AdminService.editValue(0, this.location, this.internalTitle).then((response) => {
-            //     this.$emit("changed")
-            //     EventListener.$emit('changed', response.data.req)
-            // }).catch((error) => {
-            //     if (error.response.status == 403) {
-            //         this.$store.dispatch("auth/logout");
-            //         this.$router.push("/admin/login")
-            //     } else {
-            //         console.log(error.response)
-            //     }
-            // })
-
         },
         submit(){
             this.$refs.form.requestSubmit();

@@ -4,7 +4,8 @@
             v-for="item in items"
             :key="item.id"
             :item="item"
-            :location="location + '.' + item.id">
+            :location="location + '.' + item.id"
+            :loggedIn="loggedIn">
         </text-item>
     </div>
 </template>
@@ -17,7 +18,8 @@ export default {
     },
     props:{
         items: Array,
-        location: String
+        location: String,
+        loggedIn: Boolean
     }
 }
 </script>

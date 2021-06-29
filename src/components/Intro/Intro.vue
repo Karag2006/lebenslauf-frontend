@@ -3,8 +3,18 @@
         <div class="col">
             <h1 v-if="!loggedIn" class="title">{{intro.title}}</h1>
             <h1 v-else-if="!editmode" class="title clickable" @click="editTitle">{{intro.title}}</h1>
-            <edit-title v-else :title="intro.title" v-on:cancel="cancel" :location="location + '.title'" v-on:changed="changedItem"></edit-title>
-            <intro-items :items="intro.items" :location="location + '.items'"></intro-items>
+            <edit-title 
+                v-else 
+                :title="intro.title" 
+                v-on:cancel="cancel" 
+                :location="location + '.title'" 
+                v-on:changed="changedItem">
+            </edit-title>
+            <intro-items 
+                :items="intro.items" 
+                :location="location + '.items'"
+                :loggedIn="loggedIn"
+            ></intro-items>
         </div>
         <image-col :image="intro.image" :loggedIn="loggedIn"></image-col>
     </div>

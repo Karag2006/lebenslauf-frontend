@@ -48,7 +48,21 @@ export const cv = {
         }
     },
     getters: {
-        lebenslauf: state => state.lebenslauf
+        lebenslauf: state => state.lebenslauf,
+        lebenslaufItem(state) {
+            return (value) => {
+                let string = value;
+                let items = string.split(".");
+                let len = items.length;
+                let position = state.lebenslauf;
+                for (let i = 0; i < len - 1; i++) {
+                    let elem = items[i];
+                    if (!position[elem]) position[elem] = {};
+                    position = position[elem];
+                }
+                return position[items[len - 1]];
+            }
+        } 
     }
     
 
