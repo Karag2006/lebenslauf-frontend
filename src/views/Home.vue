@@ -21,8 +21,10 @@
 import Intro from "@/components/Intro/Intro.vue";
 import MainSection from "@/components/main/Main.vue";
 
-import AdminService from "../services/admin-service";
-import { EventListener } from "@/services/event-listener"
+//import AdminService from "../services/admin-service";
+// import { EventListener } from "@/services/event-listener"
+import { createNamespacedHelpers } from 'vuex'
+const { mapGetters } = createNamespacedHelpers('cv')
 
 // import introContent from '../assets/introContent.json'
 // import mainContent from '../assets/mainContent.json'
@@ -35,11 +37,12 @@ export default {
     },
     data() {
         return {
-            lebenslauf: {},
+            //lebenslauf: {},
             location: "",
         };
     },
     computed: {
+        ...mapGetters(['lebenslauf']),
         currentUser() {
             return this.$store.state.auth.user;
         },
@@ -56,26 +59,27 @@ export default {
         },
     },
     mounted() {
-        EventListener.$on('changed', (item) => {
-            let string = item.location;
-            let items = string.split(".");
-            let len = items.length;
-            let position = this.lebenslauf;
-            for (let i = 0; i < len - 1; i++) {
-                let elem = items[i];
-                if (!position[elem]) position[elem] = {};
-                position = position[elem];
-            }
-            position[items[len - 1]] = item.value;
-            console.log(position);
-        })
-        AdminService.getAdminView()
-             .then((response) => {
-                 this.lebenslauf = response.data;
-            })
-                .catch((error) => {
-                console.log(error);
-            });
+        this.$store.dispatch("cv/initStore")
+        // EventListener.$on('changed', (item) => {
+        //     let string = item.location;
+        //     let items = string.split(".");
+        //     let len = items.length;
+        //     let position = this.lebenslauf;
+        //     for (let i = 0; i < len - 1; i++) {
+        //         let elem = items[i];
+        //         if (!position[elem]) position[elem] = {};
+        //         position = position[elem];
+        //     }
+        //     position[items[len - 1]] = item.value;
+        //     console.log(position);
+        // })
+        // AdminService.getAdminView()
+        //      .then((response) => {
+        //          this.lebenslauf = response.data;
+        //     })
+        //         .catch((error) => {
+        //         console.log(error);
+        //     });
     },
 };
 </script>

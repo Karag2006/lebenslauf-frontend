@@ -3,7 +3,8 @@
         <text-item 
             v-for="item in items"
             :key="item.id"
-            :item="item">
+            :item="item"
+            :location="location + '.' + item.id">
         </text-item>
     </div>
 </template>
@@ -15,7 +16,8 @@ export default {
         textItem
     },
     props:{
-        items: Array
+        items: Array,
+        location: String
     }
 }
 </script>

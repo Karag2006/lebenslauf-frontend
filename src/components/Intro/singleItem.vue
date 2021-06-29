@@ -8,7 +8,8 @@
 <script>
 export default {
     props:{
-        item: Object
+        item: Object,
+        location: String
     }
 }
 </script>

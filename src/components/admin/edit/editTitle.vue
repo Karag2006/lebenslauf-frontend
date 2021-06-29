@@ -14,10 +14,11 @@
 </template>
 
 <script>
-import AdminService from '../../../services/admin-service'
+//import AdminService from '../../../services/admin-service'
 import inputField from "../inputs/inputField.vue";
 import functionButton from "../inputs/functionButtons.vue";
-import { EventListener } from "@/services/event-listener"
+
+//import { EventListener } from "@/services/event-listener"
 
 export default {
     components: {
@@ -36,17 +37,26 @@ export default {
     methods: {
         save(e){
             e.preventDefault();
-            AdminService.editValue(0, this.location, this.internalTitle).then((response) => {
-                this.$emit("changed")
-                EventListener.$emit('changed', response.data.req)
-            }).catch((error) => {
-                if (error.response.status == 403) {
-                    this.$store.dispatch("auth/logout");
-                    this.$router.push("/admin/login")
-                } else {
-                    console.log(error.response)
-                }
-            })
+            // use vuex to make the change in the API
+            let obj = {
+                location: this.location,
+                value: this.internalTitle
+            }
+            this.$store.dispatch("cv/updateLebenslauf", obj)
+            this.$emit("changed")
+            // use vuex to make the change locally
+            //this.$store.commit("cv/UPDATE_LEBENSLAUF", {location: this.location, value: this.internalTitle})
+            // AdminService.editValue(0, this.location, this.internalTitle).then((response) => {
+            //     this.$emit("changed")
+            //     EventListener.$emit('changed', response.data.req)
+            // }).catch((error) => {
+            //     if (error.response.status == 403) {
+            //         this.$store.dispatch("auth/logout");
+            //         this.$router.push("/admin/login")
+            //     } else {
+            //         console.log(error.response)
+            //     }
+            // })
 
         },
         submit(){
