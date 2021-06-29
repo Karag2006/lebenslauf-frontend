@@ -7,6 +7,8 @@ import VeeValidate from "vee-validate";
 
 Vue.use(VeeValidate);
 
+
+
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@/assets/style.css'
 

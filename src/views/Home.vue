@@ -1,11 +1,13 @@
 <template>
     <div class="container">
         <intro
+            v-if="lebenslauf.intro"
             :intro="lebenslauf.intro"
             :loggedIn="loggedIn"
-            :location="location + '.intro'"
+            :location="location + 'intro'"
         ></intro>
         <main-section
+            v-if="lebenslauf.main"
             :main="lebenslauf.main"
             :loggedIn="loggedIn"
         ></main-section>
@@ -18,7 +20,9 @@
 <script>
 import Intro from "@/components/Intro/Intro.vue";
 import MainSection from "@/components/main/Main.vue";
+
 import AdminService from "../services/admin-service";
+import { EventListener } from "@/services/event-listener"
 
 // import introContent from '../assets/introContent.json'
 // import mainContent from '../assets/mainContent.json'
@@ -32,7 +36,7 @@ export default {
     data() {
         return {
             lebenslauf: {},
-            location: "lebenslauf",
+            location: "",
         };
     },
     computed: {
@@ -51,26 +55,25 @@ export default {
             //this.$router.push('/admin/login');
         },
     },
-    beforeCreate() {
+    mounted() {
+        EventListener.$on('changed', (item) => {
+            let string = item.location;
+            let items = string.split(".");
+            let len = items.length;
+            let position = this.lebenslauf;
+            for (let i = 0; i < len - 1; i++) {
+                let elem = items[i];
+                if (!position[elem]) position[elem] = {};
+                position = position[elem];
+            }
+            position[items[len - 1]] = item.value;
+            console.log(position);
+        })
         AdminService.getAdminView()
-            .then((response) => {
-                this.lebenslauf = response.data;
-
-                let string = "lebenslauf.main.skills.skillCategories.0.items.0.level";
-                let items = string.split(".");
-                let len = items.length;
-                let position = this;
-                for (let i = 0; i < len - 1; i++) {
-                    let elem = items[i];
-                    if (!position[elem]) position[elem] = {};
-                    position = position[elem];
-                }
-                position[items[len - 1]] = "2";
-                console.log(position);
-                //this.lebenslauf[items[0]][items[1]][items[2]][items[3]] = "Test"
-                //console.log(this.lebenslauf)
+             .then((response) => {
+                 this.lebenslauf = response.data;
             })
-            .catch((error) => {
+                .catch((error) => {
                 console.log(error);
             });
     },

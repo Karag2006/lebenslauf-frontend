@@ -13,7 +13,7 @@ export default {
         iconClass(){
             let value = ''
             switch(this.type) {
-                case 'save':
+                case 'submit':
                     value = 'far fa-save'
                     break
                 case 'cancel':
