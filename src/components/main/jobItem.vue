@@ -19,7 +19,9 @@ export default {
         jobWorkItem
     },
     props:{
-        item: Object
+        item: Object,
+        location: String,
+        loggedIn: Boolean
     }
 }
 </script>

@@ -1,11 +1,11 @@
 <template>
     <div class="row career">
         <div class="col">
-            <jobs-section :jobs="career.jobs"></jobs-section>
+            <jobs-section :item="item.jobs" :location="location + '.jobs'" :loggedIn="loggedIn"></jobs-section>
         </div>
         <div class="col">
-            <studies-section :studies="career.studies"></studies-section>
-            <school-section :school="career.school"></school-section>
+            <studies-section :item="item.studies" :location="location + '.studies'" :loggedIn="loggedIn"></studies-section>
+            <school-section :item="item.school" :location="location + '.school'" :loggedIn="loggedIn"></school-section>
         </div>
     </div>
 </template>
@@ -22,7 +22,9 @@ export default {
         schoolSection
     },
     props:{
-        career: Object
+        item: Object,
+        location: String,
+        loggedIn: Boolean
     }
 }
 </script>
