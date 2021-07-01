@@ -7,10 +7,10 @@ class AdminService {
     getAdminView() {
         return axios.get(API_URL + '/', {headers: authHeader()})
     }
-    editValue(id, location, newValue) {
+    editValue(obj) {
         return axios.patch(
-            API_URL + "/" + id,
-            { ident: "0", location: location, value: newValue },
+            API_URL + "/" + "0",
+            obj,
             { headers: authHeader() }
         );
     }

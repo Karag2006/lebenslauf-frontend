@@ -2,7 +2,7 @@
     <div class="intro row">
         <div class="col">
             <h1 v-if="!loggedIn" class="title">{{intro.title}}</h1>
-            <h1 v-else-if="!editmode" class="title clickable" @click="editTitle">{{intro.title}}</h1>
+            <h1 v-else-if="!editmode" class="title clickable" @click="edit">{{intro.title}}</h1>
             <edit-title 
                 v-else 
                 :title="intro.title" 
@@ -10,6 +10,7 @@
                 :location="location + '.title'" 
                 v-on:changed="changedItem">
             </edit-title>
+
             <intro-items 
                 :items="intro.items" 
                 :location="location + '.items'"
@@ -44,7 +45,7 @@ export default {
         }
     },
     methods: {
-        editTitle(){
+        edit(){
             if (this.loggedIn)
             {
                 this.editmode = true;
