@@ -36,20 +36,7 @@ export default {
         }
     },
     computed: {
-        values(){
-            let temp = []
-            let i = 0;
-            Object.keys(this.item).forEach(element => {
-                if (element != "id" && element != "_id") {
-                    temp[i] = {
-                        "location": this.location + "." + element, 
-                        "value": this.item[element]
-                    }
-                    i++;
-                }
-            });
-            return temp
-        }
+        
     },
     methods: {
         edit(){

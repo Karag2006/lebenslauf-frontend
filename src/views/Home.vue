@@ -2,7 +2,7 @@
     <div class="container">
         <intro
             v-if="lebenslauf.intro"
-            :intro="lebenslauf.intro"
+            :item="lebenslauf.intro"
             :loggedIn="loggedIn"
             :location="location + 'intro'"
         ></intro>
