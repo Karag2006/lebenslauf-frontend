@@ -10,6 +10,7 @@
             v-if="lebenslauf.main"
             :main="lebenslauf.main"
             :loggedIn="loggedIn"
+            :location="location + 'main'"
         ></main-section>
         <a v-if="loggedIn" class="btn btn-logout" @click="logOut">
             Logout

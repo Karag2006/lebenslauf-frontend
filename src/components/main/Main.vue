@@ -1,7 +1,7 @@
 <template>
     <main class="content">
-        <skill-section :skills="main.skills"></skill-section>
-        <career-section :career="main.career"></career-section>
+        <skill-section :location="location + '.skills'" :item="main.skills" :loggedIn="loggedIn"></skill-section>
+        <career-section :location="location + '.career'" :item="main.career" :loggedIn="loggedIn"></career-section>
     </main>
 </template>
 
@@ -16,6 +16,8 @@ export default {
     },
     props: {
         main: Object,
+        loggedIn: Boolean,
+        location: String
     }
 }
 </script>

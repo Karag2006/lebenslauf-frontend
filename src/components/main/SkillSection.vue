@@ -1,19 +1,37 @@
 <template>
     <div class="abilities">
-        <h2 class="subtitle">{{skills.skillTitle}}</h2>
+        <h2 v-if="!loggedIn" class="subtitle">{{ item.skillTitle }}</h2>
+        <h2 v-else-if="!editmode" class="clickable subtitle" @click="edit">
+            {{ item.skillTitle }}
+        </h2>
+        <edit-item
+            v-else
+            :names="['skillTitle']"
+            :location="location"
+            :values="item"
+            v-on:cancel="cancel"
+            v-on:changed="changedItem"
+        >
+        </edit-item>
         <div class="row">
             <div class="col">
-                <skill-category 
+                <skill-category
                     v-for="skillGroup in col1"
                     :key="skillGroup.id"
-                    :skillGroup="skillGroup">
+                    :item="skillGroup"
+                    :location="location + '.skillCategories.' + skillGroup.id"
+                    :loggedIn="loggedIn"
+                >
                 </skill-category>
             </div>
             <div class="col">
-                <skill-category 
+                <skill-category
                     v-for="skillGroup in col2"
                     :key="skillGroup.id"
-                    :skillGroup="skillGroup">
+                    :item="skillGroup"
+                    :location="location + '.skillCategories.' + skillGroup.id"
+                    :loggedIn="loggedIn"
+                >
                 </skill-category>
             </div>
         </div>
@@ -21,27 +39,50 @@
 </template>
 
 <script>
-import skillCategory from './skillCategory.vue'
+import skillCategory from "./skillCategory.vue";
+import editItem from "../admin/edit/editItem.vue"
+
 export default {
-    components:{
-        skillCategory
+    data() {
+        return {
+            editmode: false,
+        };
     },
-    props:{
-        skills: Object
+    components: {
+        skillCategory,
+        editItem
+    },
+    props: {
+        item: Object,
+        location: String,
+        loggedIn: Boolean,
     },
     computed: {
-        col1: function(){
-            let result = this.skills.skillCategories.filter(obj => {
-                return obj.col === 1
-            })
-            return result
+        col1: function() {
+            let result = this.item.skillCategories.filter((obj) => {
+                return obj.col === 1;
+            });
+            return result;
         },
-        col2: function(){
-            let result = this.skills.skillCategories.filter(obj => {
-                return obj.col === 2
-            })
-            return result
-        }       
+        col2: function() {
+            let result = this.item.skillCategories.filter((obj) => {
+                return obj.col === 2;
+            });
+            return result;
+        },
     },
-}
+    methods: {
+        edit() {
+            if (this.loggedIn) {
+                this.editmode = true;
+            }
+        },
+        changedItem() {
+            this.editmode = false;
+        },
+        cancel() {
+            this.editmode = false;
+        },
+    },
+};
 </script>
