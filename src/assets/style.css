@@ -150,9 +150,9 @@ h4::after {
     margin-bottom: 2em;
 }
 
-.jobs--item > p:nth-of-type(1),
-.studies--item > p:nth-of-type(1),
-.school--item > p:nth-of-type(1){
+.jobs--item--head > p:nth-of-type(1),
+.studies--item--head > p:nth-of-type(1),
+.school--item--head > p:nth-of-type(1){
     font-weight: bold;
 }
 
