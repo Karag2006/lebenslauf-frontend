@@ -14,6 +14,9 @@ class AdminService {
             { headers: authHeader() }
         );
     }
+    addItem(obj) {
+        return axios.post(API_URL + "/addItem", obj, { headers: authHeader() });
+    }
 }
 
 export default new AdminService()

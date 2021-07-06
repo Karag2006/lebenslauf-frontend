@@ -82,15 +82,5 @@ export default {
     min-width: 25em;
     /* background-color: blue; */
 }
-.btn {
-    margin-top: 1em;
-    display: inline-block;
-    color: white;
-    font-weight: 900;
-    padding: 0.75em 2em;
-    background-color: var(--text-color-accent);
-    border-radius: 100px;
-    text-decoration: none;
-    cursor: pointer;
-}
+
 </style>

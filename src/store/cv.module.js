@@ -31,6 +31,21 @@ export const cv = {
                         console.log(error.response);
                     }
                 }) 
+        },
+        addToLebenslauf(context, obj) {
+            obj.ident = "0"
+            AdminService.addItem(obj)
+                .then(() => {
+                    context.commit("ADD_TO_LEBENSLAUF", obj);
+                })
+                .catch((error) => {
+                    if (error.response.status == 403) {
+                        this.dispatch("auth/logout", null, { root: true });
+                        router.push("/admin/login");
+                    } else {
+                        console.log(error.response);
+                    }
+                }); 
         }
     },
     mutations: {
@@ -51,6 +66,18 @@ export const cv = {
                 position[items[len - 1]] = obj.value;
             });
             
+        },
+        ADD_TO_LEBENSLAUF(state, obj) {
+            let string = obj.location;
+            let items = string.split(".");
+            let len = items.length;
+            let position = state.lebenslauf;
+            for (let i = 0; i < len - 1; i++) {
+                let elem = items[i];
+                if (!position[elem]) position[elem] = {};
+                position = position[elem];
+            }
+            position[items[len - 1]].push(obj.item)
         }
     },
     getters: {
