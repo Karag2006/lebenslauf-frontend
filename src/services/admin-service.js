@@ -15,7 +15,7 @@ class AdminService {
         );
     }
     addItem(obj) {
-        return axios.post(API_URL + "/addItem", obj, { headers: authHeader() });
+        return axios.post(API_URL + "/" + "0", obj, { headers: authHeader() });
     }
 }
 
