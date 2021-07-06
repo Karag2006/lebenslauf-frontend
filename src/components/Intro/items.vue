@@ -9,7 +9,7 @@
         </text-item>
         <div v-if="loggedIn && !showAddForm" class="add_btn btn" @click="addForm"><i class="fas fa-plus"></i></div>
         <add-item 
-            v-else
+            v-else-if="loggedIn && showAddForm"
             :values="itemToAdd"
             :location="location"
             @cancel="cancel"
@@ -39,7 +39,7 @@ export default {
                 id: this.items.length,
                 title: "",
                 content: "",
-            }
+            },
         }
     },
     methods: {

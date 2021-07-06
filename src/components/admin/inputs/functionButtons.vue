@@ -22,6 +22,9 @@ export default {
                 case 'add':
                     value = 'fas fa-plus'
                     break
+                case 'del':
+                    value = 'far fa-trash-alt'
+                    break
             }
             return value
         }

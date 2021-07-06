@@ -17,6 +17,9 @@ class AdminService {
     addItem(obj) {
         return axios.post(API_URL + "/" + "0", obj, { headers: authHeader() });
     }
+    remItem(obj) {
+        return axios.delete(API_URL + "/0?location=" + obj.location + "&itemId=" + obj.itemId, { headers: authHeader() });
+    }
 }
 
 export default new AdminService()

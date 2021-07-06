@@ -14,6 +14,7 @@
             
             <function-button :type="'submit'" @click.native="submit" />
             <function-button :type="'cancel'" @click.native="$emit('cancel')" />
+            <function-button :type="'del'" @click.native="removeItem" />
             <input type="submit" value="submit" name="submit" class="hidden" />
         </div>
     </form>
@@ -56,6 +57,13 @@ export default {
         },
         submit(){
             this.$refs.form.requestSubmit();
+        },
+        removeItem(){
+            let obj = {}
+            obj.location = this.location
+            obj.itemId = this.values.id
+            this.$store.dispatch("cv/removeFromLebenslauf", obj)
+            this.$emit("changed")
         }
     },
 };
