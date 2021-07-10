@@ -12,6 +12,7 @@
             :names="['title','content']"
             :location="location"
             :values="item"
+            :deletable="true"
             v-on:cancel="cancel"
             v-on:changed="cancel"
         ></edit-item>

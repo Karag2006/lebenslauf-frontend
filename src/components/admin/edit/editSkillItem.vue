@@ -15,6 +15,7 @@
             </div>
             <function-button :type="'submit'" @click.native="submit" />
             <function-button :type="'cancel'" @click.native="$emit('cancel')" />
+            <function-button v-if="deletable" :type="'del'" @click.native="removeItem" />
             <input type="submit" value="submit" name="submit" class="hidden" />
         </div>
     </form>
@@ -35,6 +36,7 @@ export default {
         names: Array,
         values: Object,
         location: String,
+        deletable: Boolean
     },
     data() {
         return {
@@ -61,6 +63,15 @@ export default {
         },
         newSelect(value){
             this.values['level'] = value
+        },
+        removeItem(){
+            if (this.deletable) {
+                let obj = {}
+                obj.location = this.location
+                obj.itemId = this.values.id
+                this.$store.dispatch("cv/removeFromLebenslauf", obj)
+                this.$emit("changed")
+            }
         }
     },
 };

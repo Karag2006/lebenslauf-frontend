@@ -12,6 +12,7 @@
         :values="item"
         :location="location"
         :names="['name', 'level']"
+        :deletable="true"
         v-on:cancel="cancel"
         v-on:changed="changedItem"
     ></edit-skill-item>

@@ -7,26 +7,25 @@
             :names="['title']"
             :location="location"
             :values="item"
+            :deletable="true"
             v-on:cancel="cancel"
             v-on:changed="changedItem"
         ></edit-item>
-        <skill-item
-            v-for="currentItem in item.items"
-            :key="currentItem.id"
-            :item="currentItem"
-            :location="location + '.items.' + currentItem.id"
+        <skill-items
+            :items="item.items"
+            :location="location + '.items'"
             :loggedIn="loggedIn"    
-        ></skill-item>
+        ></skill-items>
     </div>
 </template>
 
 <script>
-import skillItem from './skillItem.vue'
+import skillItems from './skillItems.vue'
 import editItem from '../admin/edit/editItem.vue'
 
 export default {
     components:{
-        skillItem,
+        skillItems,
         editItem
     },
     props:{
