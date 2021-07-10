@@ -13,34 +13,17 @@
             v-on:changed="changedItem"
         >
         </edit-item>
-        <div class="row">
-            <div class="col">
-                <skill-category
-                    v-for="skillGroup in col1"
-                    :key="skillGroup.id"
-                    :item="skillGroup"
-                    :location="location + '.skillCategories.' + skillGroup.id"
-                    :loggedIn="loggedIn"
-                >
-                </skill-category>
-            </div>
-            <div class="col">
-                <skill-category
-                    v-for="skillGroup in col2"
-                    :key="skillGroup.id"
-                    :item="skillGroup"
-                    :location="location + '.skillCategories.' + skillGroup.id"
-                    :loggedIn="loggedIn"
-                >
-                </skill-category>
-            </div>
-        </div>
+        <skill-categories
+            :items="item.skillCategories"
+            :location="location + '.skillCategories'"
+            :loggedIn="loggedIn"
+        ></skill-categories>
     </div>
 </template>
 
 <script>
-import skillCategory from "./skillCategory.vue";
 import editItem from "../admin/edit/editItem.vue"
+import skillCategories from './SkillCategories.vue'
 
 export default {
     data() {
@@ -49,8 +32,8 @@ export default {
         };
     },
     components: {
-        skillCategory,
-        editItem
+        editItem,
+        skillCategories
     },
     props: {
         item: Object,
@@ -58,18 +41,7 @@ export default {
         loggedIn: Boolean,
     },
     computed: {
-        col1: function() {
-            let result = this.item.skillCategories.filter((obj) => {
-                return obj.col === 1;
-            });
-            return result;
-        },
-        col2: function() {
-            let result = this.item.skillCategories.filter((obj) => {
-                return obj.col === 2;
-            });
-            return result;
-        },
+
     },
     methods: {
         edit() {

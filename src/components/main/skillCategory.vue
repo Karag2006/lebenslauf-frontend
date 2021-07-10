@@ -1,5 +1,5 @@
 <template>
-    <div class="abilities--group">
+    <div v-if="item.col == col" class="abilities--group">
         <h3 v-if="!loggedIn" class="abilities--group--title"> {{item.title}} </h3>
         <h3 v-else-if="!editmode" class="clickable abilities--group--title" @click="edit"> {{item.title}} </h3>
         <edit-item
@@ -32,7 +32,8 @@ export default {
     props:{
         item: Object,
         location: String,
-        loggedIn: Boolean
+        loggedIn: Boolean,
+        col: Number
     },
     data() {
         return {
