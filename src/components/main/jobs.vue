@@ -10,22 +10,20 @@
             v-on:cancel="cancel"
             v-on:changed="changedItem"
         ></edit-item>
-        <job-item
-            v-for="job in item.jobItems"
-            :key="job.id"
-            :item="job"
-            :location="location + '.jobItems.' + job.id"
+        <job-items
+            :items=item.jobItems
+            :location="location + '.jobItems'"
             :loggedIn="loggedIn"
-        ></job-item>
+        ></job-items>
     </div>
 </template>
 
 <script>
-import jobItem from './jobItem.vue'
+import jobItems from './jobItems.vue'
 import editItem from '../admin/edit/editItem.vue'
 export default {
     components: {
-        jobItem,
+        jobItems,
         editItem
     },
     props: {

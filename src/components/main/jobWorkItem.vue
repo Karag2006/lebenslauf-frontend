@@ -6,6 +6,7 @@
         :names="['text']"
         :location="location"
         :values="item"
+        :deletable="true"
         @cancel="cancel"
         @changed="cancel"
     ></edit-item>

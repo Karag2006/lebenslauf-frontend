@@ -13,28 +13,27 @@
             :names="['institution', 'timeFrame', 'occupation']"
             :values="item"
             :location="location"
+            :deletable="true"
             v-on:cancel="cancel"
             v-on:changed="cancel"
         ></edit-item>
         <ul>
-            <job-work-item
-                v-for="workItem in item.work"
-                :key="workItem.id"
-                :item="workItem"
-                :location="location + '.work.' + workItem.id"
+            <job-work-items
+                :items=item.work
+                :location="location + '.work'"
                 :loggedIn="loggedIn"
-            ></job-work-item>
+            ></job-work-items>
         </ul>
     </div>
 </template>
 
 <script>
-import jobWorkItem from './jobWorkItem.vue'
+import jobWorkItems from './jobWorkItems.vue'
 import editItem from '../admin/edit/editItem.vue'
 
 export default {
     components:{
-        jobWorkItem,
+        jobWorkItems,
         editItem
     },
     props:{
